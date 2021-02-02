@@ -5,7 +5,7 @@ import {
 import {
   getMessage
 } from '@/services/axios'
-import flushPromises from 'flush-promises'
+// import flushPromises from 'flush-promises'
 
 jest.mock('@/services/axios')
 
