@@ -6,10 +6,26 @@ import {
 describe('LoginForm', () => {
   it('emits an event with a user data payload', () => {
     const wrapper = mount(LoginForm)
+
     // 1. Find text input
+    const input = wrapper.find('input[type="text"]')
+
     // 2. Set value for text input
+    // if you have multiple inputs, best practice to find elements is to give datatest-id attribute to component so test can be decoupled from implmentation details
+    input.setValue('Adam Jahr')
+
     // 3. Simulate form submission
+    wrapper.trigger('submit')
+
     // 4. Assert event has been emitted
+    const formSubmittedCalls = wrapper.emitted('formSubmitted')
+    expect(formSubmittedCalls).toHaveLength(1) // just checks event was actually emitted
+
     // 5. Assert payload is correct
+    const expectedPayload = {
+      name: 'Adam Jahr'
+    }
+    expect(wrapper.emitted('formSubmitted')[0][0]).toMatchObject(expectedPayload)
+
   })
 })
